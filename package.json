@@ -11,7 +11,9 @@
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "setup:keys": "node scripts/generate-keys.js",
+    "setup:client": "node scripts/create-oauth-client.js"
   },
   "keywords": [],
   "author": "",
