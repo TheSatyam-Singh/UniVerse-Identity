@@ -1,5 +1,6 @@
 import * as crypto from 'crypto'
 import { SignJWT, jwtVerify, importPKCS8, importSPKI } from 'jose'
+import bcrypt from 'bcryptjs'
 
 // Generate RSA key pair (run once and store in env vars)
 export async function generateKeyPair() {
@@ -103,13 +104,11 @@ export function generateSecureToken(length: number = 32): string {
 
 // Hash password
 export function hashPassword(password: string): string {
-  const bcrypt = require('bcryptjs')
   return bcrypt.hashSync(password, 12)
 }
 
 // Verify password
 export function verifyPassword(password: string, hash: string): boolean {
-  const bcrypt = require('bcryptjs')
   return bcrypt.compareSync(password, hash)
 }
 

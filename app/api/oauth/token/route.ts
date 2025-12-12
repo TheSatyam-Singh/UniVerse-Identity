@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { grant_type, client_id, client_secret, code, redirect_uri, refresh_token, code_verifier } = body
 
-    if (!grant_type || !client_id) {
+    if (!grant_type || !client_id || !client_secret) {
       return NextResponse.json(
         { error: 'invalid_request', error_description: 'Missing required parameters' },
         { status: 400 }
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Verify client secret
-    if (!verifyPassword(client_secret || '', client.clientSecret)) {
+    if (!verifyPassword(client_secret, client.clientSecret)) {
       return NextResponse.json(
         { error: 'invalid_client' },
         { status: 401 }
